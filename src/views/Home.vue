@@ -6,14 +6,16 @@
         <span>{{product.price}}</span>
       </li>
     </ul>
-    <button @click="reducefruitprice">水果降价</button>
+    <button @click="reducefruitprice(3)">水果降价</button>
+     <button @click="reducefruitpriceasyn(4)">水果异步降价</button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import { mapMutations } from "vuex";
+import { mapMutations,mapActions } from "vuex";
+
 export default {
   name: "home",
   components: {},
@@ -23,9 +25,8 @@ export default {
     };
   },
   methods: {
-    reducefruitprice() {
-      this.$store.commit("reducefruitprice", 4);
-    },
+    ...mapMutations(["reducefruitprice", "reduceprice"]),
+    ...mapActions(["reducefruitpriceasyn"])
   }
 };
 </script>
@@ -43,6 +44,14 @@ export default {
       margin: 2px;
       border-radius: 3px;
     }
+  }
+  button {
+    background: rgb(19, 104, 153);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: 50px;
   }
 }
 </style>
