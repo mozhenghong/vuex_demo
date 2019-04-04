@@ -6,7 +6,7 @@
         <span>{{product.price}}</span>
       </li>
     </ul>
-    <button @click="reducefruitprice(3)">水果降价</button>
+    <button @click="reduce(3)">水果降价</button>
      <button @click="reducefruitpriceasyn(4)">水果异步降价</button>
   </div>
 </template>
@@ -25,7 +25,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["reducefruitprice", "reduceprice"]),
+    //将mutation方法重命名
+    ...mapMutations({reduce: 'reducefruitprice'}),
     ...mapActions(["reducefruitpriceasyn"])
   }
 };
